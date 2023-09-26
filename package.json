@@ -1,0 +1,52 @@
+{
+  "name": "vue3-gantt",
+  "private": false,
+  "version": "1.1.8-6",
+  "description": "Vue3甘特图组件",
+  "author": "Yijio",
+  "license": "ISC",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/gantt.umd.js",
+  "module": "./dist/gantt.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/gantt.es.js",
+      "require": "./dist/gantt.umd.js"
+    },
+    "./dist/*": "./dist/*"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ctrl/tinycolor": "^3.6.0",
+    "core-js": "^3.21.1",
+    "html2canvas": "^1.4.1",
+    "lay-excel": "^1.7.6",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "less": "^4.1.2",
+    "terser": "^5.16.1",
+    "vite": "^4.0.4"
+  },
+  "keywords": [
+    "vue3",
+    "gantt",
+    "甘特图",
+    "vue",
+    "Excel"
+  ],
+  "homepage": "https://github.com/ddmy/vue-gantt#readme",
+  "bugs": {
+    "url": "https://github.com/ddmy/vue-gantt/issues"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.45"
+  }
+}
