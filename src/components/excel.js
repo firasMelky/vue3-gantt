@@ -37,9 +37,7 @@ const transColor = val => {
 }
 
 export function exportExcel (file, rangeDate, list, dateText = '', itemText = '') {
-  const { fileName = '数据' } = file
-  console.log('导出excel', rangeDate, list)
-  // 前三行日期范围
+  const { fileName = 'data' } = file
   let data = []
   const headArr = [{ name: `${dateText}-${itemText}` }, {}, {}]
   const headKeys = ['name']
@@ -54,22 +52,17 @@ export function exportExcel (file, rangeDate, list, dateText = '', itemText = ''
 
       templateLine[`${day.year}-${day.month}-${day.day}`] = ''
     })
-    // 计算顶部月份合并范围
     const prev = monthMerageConfig.at(-1) ? Convert26(ConvertNum(monthMerageConfig.at(-1).at(-1))) : 'A'
     const end = Convert26(ConvertNum(prev) + item.length)
     monthMerageConfig.push([Convert26(ConvertNum(prev) + 1), end])
   })
-  // 处理顶部月份合并范围索引
+  
   monthMerageConfig = monthMerageConfig.map(item => {
     item = item.map(index => index + 1)
     return item
   })
   data = data.concat(headArr)
-
-  
   const totalDays = headKeys.length - 1
-
-  // 循环计算数据列
   list.forEach(item => {
     const tmp = JSON.parse(JSON.stringify(templateLine))
     tmp.name = item.name
@@ -79,22 +72,23 @@ export function exportExcel (file, rangeDate, list, dateText = '', itemText = ''
   })
 
   const dataMergeConfig = []
-  /**
-   * 记录需要设置的单元格样式
+
+/**
+   * Record the cell style that needs to be set
    * {
-   *  type: 1,  // 1 设置背景色, 文字颜色
-   *  backgroundColor, textColor: 设置的值
-   *  range: 设置的范围
+   * type: 1, // 1 set background color, text color
+   * backgroundColor, textColor: set value
+   * range: set range
    * }
    */
   const setStyleList = []
   data.forEach((item, index) => {
-    // excel中的行数
+   //Number of rows in excel
     const currentLine = index + 1
-    // 默认占据整行的数据
+    //The data occupies the entire row by default
     if (item.type === 'alike') {
       dataMergeConfig.push([`B${currentLine}`, `${Convert26(totalDays + 1)}${currentLine}`])
-      // 设置单元格背景色
+      //Set cell background color
       setStyleList.push({
         type: 1,
         backgroundColor: 'F6F6F6',
@@ -103,22 +97,22 @@ export function exportExcel (file, rangeDate, list, dateText = '', itemText = ''
     } else if (item.renderWorks) {
       item.renderWorks.forEach(renderItem => {
         if (renderItem.type === 'works') {
-          // 当前日程的起始位置
+          //Start position of current schedule
           const startFindIndex = headKeys.findIndex(headItem => headItem === renderItem.days[0])
           const startIndex = Convert26((startFindIndex < 1 ? 1 : startFindIndex) + 1)
-          // 当前日程结束位置 
+        //The end position of the current schedule
           const endFIndIndex = headKeys.findIndex(headItem => headItem === renderItem.days.at(-1))
           const endIndex = Convert26((endFIndIndex < 1 ? headKeys.length - 1 : endFIndIndex) + 1)
-          // 处理单元格合并
+          // Handle cell merging
           dataMergeConfig.push([`${startIndex}${currentLine}`, `${endIndex}${currentLine}`])
-          // 设置单元格背景色
+          //Set cell background color
           setStyleList.push({
             type: 1,
             backgroundColor: renderItem.backgroundColor.replace('#', ''),
             textColor: renderItem.textColor.replace('#', ''),
             range: `${startIndex}${currentLine}:${endIndex}${currentLine}`
           })
-          // 设置单元格内容
+          //Set cell content
           renderItem.days.forEach(day => {
             data[currentLine - 1][day] = renderItem.name
           })
@@ -148,7 +142,8 @@ export function exportExcel (file, rangeDate, list, dateText = '', itemText = ''
     }
   })
 
-  // 批量应用单元格样式
+  
+//Apply cell styles in batches
   setStyleList.forEach(item => {
     if (item.type === 1) {
       LAY_EXCEL.setExportCellStyle(resultData, item.range, { 

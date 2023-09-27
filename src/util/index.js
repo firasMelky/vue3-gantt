@@ -28,7 +28,7 @@ export const fetchDayDetail = (current) => {
 export const fethDays = (str) => {
   const month = str.replace(/\//g, '-')
   const monthArr = month.split('-').map(item => Number(item))
-  if (monthArr.length !== 2) throw new Error('获取月份日期参数错误:', str)
+  if (monthArr.length !== 2) throw new Error('Error getting month date parameter', str)
   const count = new Date(...monthArr, 0).getDate()
   return new Array(count).fill().map((item, index) => index + 1)
 }
@@ -160,7 +160,6 @@ export const workListSplitForRepeat = (arr, repeatMode) => {
                 daysSource: schedule.schedule[resMap[index][0]].days
             }
             if (r.list) {
-              // 这是第n次，循环，重叠数据已经处理过
               let desc = ''
               let name = ''
               if (typeof repeatMode.desc === 'function') {

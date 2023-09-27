@@ -85,7 +85,7 @@ const alikeName = item => {
 }
 
 const onScrollYEnd = e => {
-  console.log('|到底了')
+  console.log("It's over")
 }
 
 const toggle = () => {
@@ -114,7 +114,7 @@ const today = () => {
 }
 
 const exportGanttExcel = () => {
-    gantt.value.exportGanttExcel({ fileName: '测试信息' })
+    gantt.value.exportGanttExcel({ fileName: 'Test information' })
 }
 
 

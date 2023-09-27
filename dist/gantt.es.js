@@ -1337,7 +1337,7 @@ function exportExcel(file, rangeDate, list, dateText = "", itemText = "") {
     }
   });
 }
-const Gantt_vue_vue_type_style_index_0_scoped_e1537996_lang = "";
+const Gantt_vue_vue_type_style_index_0_scoped_52ce15ea_lang = "";
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -1427,11 +1427,11 @@ const _sfc_main = {
   setup(__props, { expose, emit }) {
     const props = __props;
     useCssVars((_ctx) => ({
-      "c382b30c": props.borderColor,
-      "561f9e92": props.itemWidth + "px",
-      "139e42d6": props.itemHeight + "px",
-      "20827f17": ganttMaxWidth.value,
-      "5562a2b0": ganttInnerHeight.value
+      "40332078": props.borderColor,
+      "0004a5ad": props.itemWidth + "px",
+      "4b186ca0": props.itemHeight + "px",
+      "0773053e": ganttMaxWidth.value,
+      "3243941e": ganttInnerHeight.value
     }));
     let rangeDate = ref([]);
     const ganttMaxWidth = ref("2000px");
@@ -1769,7 +1769,7 @@ const _sfc_main = {
             if (download) {
               const a = document.createElement("a");
               a.href = href;
-              a.setAttribute("download", "日程图");
+              a.setAttribute("download", "gantt-download");
               a.click();
             }
             resolve(href);
@@ -1885,7 +1885,7 @@ const _sfc_main = {
     };
   }
 };
-const Gantt = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-e1537996"]]);
+const Gantt = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-52ce15ea"]]);
 export {
   computedDaysRange,
   Gantt as default,

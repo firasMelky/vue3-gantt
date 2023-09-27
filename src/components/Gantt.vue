@@ -557,7 +557,7 @@ const exportImg = async (config = {}) => {
         if (download) {
           const a = document.createElement('a')
           a.href = href
-          a.setAttribute('download', '日程图')
+          a.setAttribute('download', 'gantt-download')
           a.click()
         }
         resolve(href)
