@@ -1022,7 +1022,7 @@ const fethDays = (str) => {
   const month = str.replace(/\//g, "-");
   const monthArr = month.split("-").map((item) => Number(item));
   if (monthArr.length !== 2)
-    throw new Error("获取月份日期参数错误:", str);
+    throw new Error("Error getting month date parameter", str);
   const count = new Date(...monthArr, 0).getDate();
   return new Array(count).fill().map((item, index) => index + 1);
 };
@@ -1233,8 +1233,7 @@ const transColor = (val) => {
   return color.substring(1);
 };
 function exportExcel(file, rangeDate, list, dateText = "", itemText = "") {
-  const { fileName = "数据" } = file;
-  console.log("导出excel", rangeDate, list);
+  const { fileName = "data" } = file;
   let data = [];
   const headArr = [{ name: `${dateText}-${itemText}` }, {}, {}];
   const headKeys = ["name"];
